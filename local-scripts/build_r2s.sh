@@ -28,8 +28,8 @@ echo -n "Step 06...\n------------------------------"
 ./steps/06-create_config_from_toolchain_seed.sh
 
 cd $BUILDDIR/openwrt
-make download -j 12
-make toolchain/install -j 12
-make -j 12
+make download $(nproc)
+make toolchain/install $(nproc)
+make $(nproc)
 
 
