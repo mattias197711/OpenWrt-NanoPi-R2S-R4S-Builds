@@ -16,7 +16,7 @@ echo CONFIG_ALL_KMODS=y >> .config
 make defconfig
 
 rm -rf bin/
-rm -rf files/ipks/
+rm -rf files/apks/
 let make_process=$(nproc)+1
 
 # compile toolchain if not built yet
@@ -36,12 +36,12 @@ make package/base-files/configure V=s || exit 1
 
 # sign packages
 make package/index V=s || exit 1
-mkdir -p files/ipks
-cd files/ipks
+mkdir -p files/apks
+cd files/apks
 find ../../bin/targets/rockchip/armv8/packages/ -type f -exec ln {} . \;
 cd ..
 mkdir -p etc/uci-defaults
-cat << "EOF" > etc/uci-defaults/99-local-ipks
-echo "src/gz local file:///ipks/" >> /etc/opkg/distfeeds.conf
+cat << "EOF" > etc/uci-defaults/99-local-apks
+echo "src/gz local file:///apks/" >> /etc/opkg/distfeeds.conf
 EOF
 

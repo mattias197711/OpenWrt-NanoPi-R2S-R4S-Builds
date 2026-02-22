@@ -9,7 +9,7 @@ fi
 BUILDDIR="$ROOTDIR/build"
 
 cd "$BUILDDIR/openwrt"
-OPENWRT_BRANCH=23.05
+OPENWRT_BRANCH=25.12
 
 # -------------- UBOOT -----------------------------------
 # replace uboot with local uboot package
@@ -28,11 +28,12 @@ rsync -avz $ROOTDIR/openwrt-$OPENWRT_BRANCH/patches/target/ target
 # ------------------ packages ------------------------------------
 
 # enable armv8 crypto for mbedtls
-cp $ROOTDIR/openwrt-$OPENWRT_BRANCH/patches/package/mbedtls/patches/200-Implements-AES-and-GCM-with-ARMv8-Crypto-Extensions.patch \
-   package/libs/mbedtls/patches/
+#TODO : reenable
+#cp $ROOTDIR/openwrt-$OPENWRT_BRANCH/patches/package/mbedtls/patches/200-Implements-AES-and-GCM-with-ARMv8-Crypto-Extensions.patch \
+#   package/libs/mbedtls/patches/
 
 # enable motorcomm for R2C
-echo "CONFIG_MOTORCOMM_PHY=y" >> target/linux/rockchip/armv8/config-5.15
+echo "CONFIG_MOTORCOMM_PHY=y" >> target/linux/rockchip/armv8/config-6.12
 
 # add caiaq usb sound module for shairport with old soundcard
 ADDON_PATH='snd-usb-caiaq.makefileaddon'
@@ -46,11 +47,11 @@ else
 fi
 
 # revert to fresh config
-cp $BUILDDIR/openwrt-fresh-$OPENWRT_BRANCH/target/linux/generic/config-5.15 target/linux/generic/config-5.15
+cp $BUILDDIR/openwrt-fresh-$OPENWRT_BRANCH/target/linux/generic/config-6.12 target/linux/generic/config-6.12
 
-cat << "EOF" >> target/linux/generic/config-5.15
+#cat << "EOF" >> target/linux/generic/config-6.12
 # CONFIG_BLK_DEV_SX8 is not set
-EOF
+#EOF
 
 
 #cleanup

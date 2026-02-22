@@ -6,7 +6,7 @@ if [ ! -e "$ROOTDIR/build" ]; then
     exit 1
 fi
 
-OPENWRT_BRANCH=23.05
+OPENWRT_BRANCH=25.12
 
 cd "$ROOTDIR/build"
 
@@ -14,9 +14,9 @@ cd "$ROOTDIR/build"
 rm -rf stangri_repo
 mkdir stangri_repo
 cd stangri_repo
-# stick to version 1.1.6 of pbr for now
-git clone -b 1.1.6 https://github.com/stangri/pbr.git
-git clone https://github.com/stangri/luci-app-pbr.git
+# use version 1.2.0 of pbr for now
+git clone -b 1.2.0 https://github.com/mossdef-org/pbr.git
+git clone -b 1.2.0 https://github.com/mossdef-org/luci-app-pbr.git
 #git clone https://github.com/stangri/source.openwrt.melmac.net stangri_repo
 cd ..
 

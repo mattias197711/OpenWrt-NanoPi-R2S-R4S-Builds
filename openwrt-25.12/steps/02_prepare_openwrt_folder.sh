@@ -8,11 +8,11 @@ fi
 
 cd "$ROOTDIR/build"
 
-cp -R openwrt-fresh-23.05 openwrt
+cp -R openwrt-fresh-25.12 openwrt
 
-# freeze revision to 23.05.5
+# freeze revision to 25.12.0-rc5
 cd openwrt
-git reset --hard 28cf53e6bd9bb68958aae7958e7950d967f02b46
+git reset --hard b36d5e3da093c770efb9ce1a865427d5d512377d
 
 echo "Current OpenWRT commit"
 git log -1
